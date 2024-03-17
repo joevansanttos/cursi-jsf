@@ -5,22 +5,28 @@ import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import com.compasso.erp.model.Empresa;
+import com.compasso.erp.model.TipoEmpresa;
+
 @Named
 @ViewScoped
 public class GestaoEmpresasBean implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private static Integer NUMERO = 0;
-	
-	public GestaoEmpresasBean() {
-		NUMERO++;
+
+	private Empresa empresa = new Empresa();
+
+	public void salvar() {
+		System.out.println("Razao Social: " + empresa.getRazaoSocial() + "- Nome Fantasia: " + empresa.getNomeFantasia()
+				+ "- Tipo: " + empresa.getTipo());
 	}
-		
-	public Integer getNumero() {
-		return NUMERO;
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public TipoEmpresa[] getTiposEmpresa() {
+		return TipoEmpresa.values();
 	}
 
 }

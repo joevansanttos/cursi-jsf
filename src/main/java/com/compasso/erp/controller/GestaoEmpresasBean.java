@@ -20,6 +20,11 @@ public class GestaoEmpresasBean implements Serializable {
 		System.out.println("Razao Social: " + empresa.getRazaoSocial() + "- Nome Fantasia: " + empresa.getNomeFantasia()
 				+ "- Tipo: " + empresa.getTipo());
 	}
+	
+	 public String ajuda() {
+	        return "AjudaGestaoEmpresas?faces-redirect=true";
+	    }
+	    
 
 	public Empresa getEmpresa() {
 		return empresa;

@@ -8,25 +8,52 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.compasso.erp.model.Empresa;
+import com.compasso.erp.model.TipoEmpresa;
 import com.compasso.erp.repository.Empresas;
+import com.compasso.erp.util.FacesMessages;
 
 @Named
 @ViewScoped
 public class GestaoEmpresasBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Inject
+    @Inject
     private Empresas empresas;
-    
+
+    @Inject
+    private FacesMessages messages;
+
     private List<Empresa> listaEmpresas;
-    
+
+    private String termoPesquisa;
+
+    public void pesquisar() {
+        listaEmpresas = empresas.pesquisar(termoPesquisa);
+
+        if (listaEmpresas.isEmpty()) {
+            messages.info("Sua consulta não retornou registros.");
+        }
+    }
+
     public void todasEmpresas() {
         listaEmpresas = empresas.todas();
     }
-    
+
     public List<Empresa> getListaEmpresas() {
         return listaEmpresas;
+    }
+
+    public String getTermoPesquisa() {
+        return termoPesquisa;
+    }
+
+    public void setTermoPesquisa(String termoPesquisa) {
+        this.termoPesquisa = termoPesquisa;
+    }
+
+    public TipoEmpresa[] getTiposEmpresa() {
+        return TipoEmpresa.values();
     }
 
 }
